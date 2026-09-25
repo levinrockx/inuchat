@@ -5,31 +5,29 @@ import Header from "../Header/Header";
 import Button from "../Button/Button";
 import { HeaderType } from "../Header/domain/types";
 import { ButtonVariant } from "../Button/domain/types";
-import Ollama from "ollama";
+import Input from "../Input/Input";
 
 const Chat = () => {
-    const sendMessage = async (content: string) => {
-        const response = await Ollama.chat({
-            model: 'gemma4:latest',
-            messages: [
-                {
-                    role: 'user',
-                    content,
-                }
-            ]
+    const sendMessage = async (message: string) => {
+        const response = await fetch("/api", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ message }),
         });
 
         console.log(response);
     };
 
     return (
-        <FlexContainer direction="column" alignItem="center" justifyContent="center">
+        <FlexContainer direction="column" className="min-h-[100vh]">
             <Header type={HeaderType.H1}>InuChat</Header>
-            <FlexContainer className="min-h-[90vh]" direction="column">
+            <FlexContainer direction="column" className="flex-1">
                 <div></div>
             </FlexContainer>
-            <FlexContainer >
-                {/* <Input type='text' onChange={(event) => setMessage(event.target.value)} /> */}
+            <FlexContainer justifyContent="space-between" className="w-full">
+                <Input type='text' className="w-full" />
                 <div onClick={() => sendMessage('')}>
                     <Button variant={ButtonVariant.PRIMARY}  >
                         Send
