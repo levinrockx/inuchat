@@ -6,4 +6,5 @@ export type FlexContainerProps = {
     alignItem?: CSSProperties['alignItems'];
     children: React.ReactNode;
     className?: string;
+    gap?: number;
 };

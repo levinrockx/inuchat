@@ -6,6 +6,7 @@ const FlexContainer: React.FC<FlexContainerProps> = ({
     alignItem = 'start',
     justifyContent = 'start',
     className,
+    gap = 0,
 }) => {
     let classes: string = 'flex';
 
@@ -19,6 +20,7 @@ const FlexContainer: React.FC<FlexContainerProps> = ({
         case 'start': classes += ' items-start'; break;
         case 'center': classes += ' items-center'; break;
         case 'end': classes += ' items-end'; break;
+        case 'stretch': classes += ' items-stretch'; break;
         default: throw Error('Flex align items is unknown');
     }
 
@@ -32,7 +34,11 @@ const FlexContainer: React.FC<FlexContainerProps> = ({
         default: throw Error('Flex justicy content items is unknown');
     }
 
-    return <div className={`${classes} ${className}`}>{children}</div>
+    if (className) {
+        classes += ` ${className}`;
+    }
+
+    return <div className={`${classes}`} style={{ gap: gap }}>{children}</div>
 };
 
 export default FlexContainer;
