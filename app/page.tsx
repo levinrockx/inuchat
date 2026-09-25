@@ -1,4 +1,4 @@
-import Chat from "./shared/components/Chat/chat";
+import Chat from "./components/Chat/chat";
 
 const Home = () => {
   return <Chat />;
