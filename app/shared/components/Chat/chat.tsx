@@ -7,7 +7,7 @@ import { IoMdSend } from "react-icons/io";
 import Header from "../Header/Header";
 import Button from "../Button/Button";
 import Input from "../Input/Input";
-import Inu from '../../../../public/inu.png';
+import Inu from '../../../assets/inu.png';
 import Image from "next/image";
 
 const Chat = () => {

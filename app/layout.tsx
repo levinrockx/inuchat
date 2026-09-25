@@ -15,6 +15,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "InuChat",
   description: "Ollama ChatBot",
+  icons: {
+    icon: './assets/inu.png'
+  }
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
