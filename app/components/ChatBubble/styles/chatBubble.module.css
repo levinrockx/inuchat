@@ -1,0 +1,13 @@
+.chatBubble {
+    border-radius: 10px;
+    color: #ffffff;
+    padding: 10px;
+}
+
+.userBubble {
+    background-color: #0984e3;
+}
+
+.assistantBubble {
+    background-color: #fd79a8;
+}

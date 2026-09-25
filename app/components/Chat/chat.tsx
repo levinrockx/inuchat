@@ -11,9 +11,10 @@ import Header from "../Header/Header";
 import Button from "../Button/Button";
 import Input from "../Input/Input";
 import Image from "next/image";
+import ChatBubble from "../ChatBubble/ChatBubble";
 
 const Chat = () => {
-    const { messages, message, setMessage, send } = useChat();
+    const { messages, message, setMessage, send, inputRef } = useChat();
 
     return (
         <FlexContainer direction="column" className="min-h-[100vh] p-4" gap={10}>
@@ -23,11 +24,7 @@ const Chat = () => {
             </FlexContainer>
             <FlexContainer direction="column" className={classes.chat}>
                 {messages && messages?.map((res, index) => {
-                    return (
-                        <div key={res.role + index}>
-                            {res.content}
-                        </div>
-                    )
+                    return <ChatBubble message={res} key={res.role + index} />
                 })}
             </FlexContainer>
             <FlexContainer alignItem="stretch" justifyContent="space-between" className="w-full" gap={10}>
@@ -36,9 +33,10 @@ const Chat = () => {
                     placeholder="Type a message here..."
                     className="w-full"
                     value={message}
+                    ref={inputRef}
                     type="text"
                 />
-                <Button variant={ButtonVariant.PRIMARY} onClick={send}>
+                <Button variant={ButtonVariant.PRIMARY} onClick={() => { send(); }}>
                     <IoMdSend />
                 </Button>
             </FlexContainer>
