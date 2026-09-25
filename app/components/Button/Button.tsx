@@ -3,11 +3,12 @@ import classes from './styles/button.module.css';
 
 const Button: React.FC<ButtonProps> = ({
     variant,
-    children
+    children,
+    onClick
 }) => {
 
     return (
-        <button className={`p-2 px-4 text-xl cursor-pointer ${classes[variant]}`}>
+        <button className={`p-2 px-4 text-xl cursor-pointer ${classes[variant]}`} onClick={onClick}>
             {children}
         </button>
     );

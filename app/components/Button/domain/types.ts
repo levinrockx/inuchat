@@ -5,4 +5,5 @@ export enum ButtonVariant {
 
 export interface ButtonProps extends React.ComponentPropsWithoutRef<'button'> {
     variant: ButtonVariant;
+    onClick?: () => void;
 };

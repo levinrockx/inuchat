@@ -1,7 +1,7 @@
 import { Message } from "ollama";
 
 export type ChatStore = {
-    sendMessage: (message: Message) => Promise<Message[]>;
+    setMessages: (messages: Message[]) => void;
     getMessages: () => Promise<Message[]>;
     messages: Message[];
 };
