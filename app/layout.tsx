@@ -14,10 +14,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "InuChat",
-  description: "Ollama ChatBot",
-  icons: {
-    icon: './assets/inu.png'
-  }
+  description: "Ollama ChatBot"
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -26,6 +23,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
+      <link rel="icon" href="/favicon.png" sizes="any" />
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
   );
