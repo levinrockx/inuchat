@@ -21,8 +21,8 @@ const useChat = () => {
 
         if (parentInputRef) {
             keyDownEvent = parentInputRef.addEventListener('keydown', (event) => {
-                if (event.key === 'Enter' && message) {
-                    console.log('Message: ', message);
+                if (event.key === 'Enter' && inputRef.current?.value) {
+                    console.log('Message: ', inputRef.current?.value);
                     send(inputRef.current?.value);
                 }
             })
@@ -33,7 +33,7 @@ const useChat = () => {
                 parentInputRef.removeEventListener('keydown', keyDownEvent);
             }
         }
-    }, [send]);
+    }, []);
 
     return {
         setMessage,

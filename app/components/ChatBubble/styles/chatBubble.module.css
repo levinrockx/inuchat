@@ -6,8 +6,16 @@
 
 .userBubble {
     background-color: #0984e3;
+    word-break: break-all;
+    margin-right: 20px;
 }
 
 .assistantBubble {
     background-color: #fd79a8;
+}
+
+.userName {
+    font-size: 16px;
+    font-weight: 700;
+    margin-left: 10px;
 }

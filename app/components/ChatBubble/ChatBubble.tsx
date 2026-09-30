@@ -1,6 +1,7 @@
 import { Role } from "@/app/utils/domain/type";
 import { ChatBubbleProps } from "./domain/types";
 import classes from './styles/chatBubble.module.css';
+import FlexContainer from "../FlexContainer/FlexContainer";
 
 const ChatBubble: React.FC<ChatBubbleProps> = ({ message }) => {
     let customClasses = `${classes.chatBubble}`;
@@ -12,9 +13,14 @@ const ChatBubble: React.FC<ChatBubbleProps> = ({ message }) => {
     }
 
     return (
-        <div className={customClasses}>
-            {message.role} : {message.content}
-        </div>
+        <FlexContainer direction="column">
+            <div className={classes.userName}>
+                {message.role}
+            </div>
+            <div className={customClasses}>
+                {message.content}
+            </div>
+        </FlexContainer>
     )
 };
 
