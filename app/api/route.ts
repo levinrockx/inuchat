@@ -1,19 +1,24 @@
-import Ollama from "ollama";
+import Ollama, { ChatResponse } from "ollama";
 
-export const POST = async (req, res) => {
-    // const { message } = req.body;
+export const POST = async (req: Request) => {
+    const messages = await req.json();
 
-    // const response = await Ollama.chat({
-    //     model: 'gemma4:latest',
-    //     messages: [
-    //         {
-    //             role: 'user',
-    //             content: message,
-    //         }
-    //     ]
-    // });
+    console.log(messages);
 
-    // console.log(response);
+    let response: ChatResponse | null = null;
 
-    // return res.status(200).json({ message: response.message.content });
+    try {
+        response = await Ollama.chat({
+            model: 'llama3.2:latest',
+            messages
+        });
+
+        return new Response(JSON.stringify(response.message), {
+            status: 200,
+        })
+    } catch (err) {
+        return new Response(JSON.stringify(err), {
+            status: 500,
+        })
+    }
 };

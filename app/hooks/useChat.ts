@@ -1,6 +1,7 @@
 import { generateUserMessage } from "../utils/messages";
 import { useEffect, useRef, useState } from "react";
 import useChatStore from "../store/useChatStore";
+import { Message } from "ollama";
 
 const useChat = () => {
     const { setMessages, messages, getMessages } = useChatStore();
@@ -11,10 +12,19 @@ const useChat = () => {
         const previousMessage = await getMessages();
         const userMessage = generateUserMessage(inputMessage ?? message);
         const newMessages = [...previousMessage, userMessage];
-        setMessages(newMessages);
+        try {
+            const response = await fetch('/api', {
+                method: 'POST',
+                body: JSON.stringify(newMessages)
+            }).then(res => res.json()) as Message;
+            setMessages([...newMessages, response])
+        } catch (err) {
+            console.log(err);
+        }
         setMessage('');
-    }
+    };
 
+    // Used for listening to enter key click on the chat input element.
     useEffect(() => {
         let keyDownEvent = null;
         const parentInputRef = inputRef.current;
