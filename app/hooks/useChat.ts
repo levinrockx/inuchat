@@ -18,10 +18,10 @@ const useChat = () => {
                 body: JSON.stringify(newMessages)
             }).then(res => res.json()) as Message;
             setMessages([...newMessages, response])
+            setMessage('');
         } catch (err) {
             console.log(err);
         }
-        setMessage('');
     };
 
     // Used for listening to enter key click on the chat input element.

@@ -1,8 +1,12 @@
+import { Role } from "../utils/domain/type";
 import { ChatStore } from "./domain/types";
 import { create } from "zustand";
 
 const useChatStore = create<ChatStore>((set, get) => ({
-    messages: [],
+    messages: [{
+        role: Role.SYSTEM,
+        content: 'You are a pet dog who can talk, called Inu.'
+    }],
     getMessages: async () => {
         return get().messages;
     },

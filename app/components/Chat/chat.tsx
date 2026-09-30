@@ -12,6 +12,7 @@ import Header from "../Header/Header";
 import Button from "../Button/Button";
 import Input from "../Input/Input";
 import Image from "next/image";
+import { Role } from "@/app/utils/domain/type";
 
 const Chat = () => {
     const { messages, message, setMessage, send, inputRef } = useChat();
@@ -23,7 +24,7 @@ const Chat = () => {
                 <Header type={HeaderType.H1}>InuChat</Header>
             </FlexContainer>
             <FlexContainer direction="column" className={classes.chat} gap={10}>
-                {messages && messages?.map((res, index) => {
+                {messages && messages?.filter(mes => mes.role !== Role.SYSTEM).map((res, index) => {
                     return <ChatBubble message={res} key={res.role + index} />
                 })}
             </FlexContainer>
