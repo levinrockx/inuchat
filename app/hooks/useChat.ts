@@ -12,13 +12,14 @@ const useChat = () => {
         const previousMessage = await getMessages();
         const userMessage = generateUserMessage(inputMessage ?? message);
         const newMessages = [...previousMessage, userMessage];
+        setMessages(newMessages)
+        setMessage('');
         try {
             const response = await fetch('/api', {
                 method: 'POST',
                 body: JSON.stringify(newMessages)
             }).then(res => res.json()) as Message;
             setMessages([...newMessages, response])
-            setMessage('');
         } catch (err) {
             console.log(err);
         }
@@ -31,9 +32,9 @@ const useChat = () => {
 
         if (parentInputRef) {
             keyDownEvent = parentInputRef.addEventListener('keydown', (event) => {
-                if (event.key === 'Enter' && inputRef.current?.value) {
-                    console.log('Message: ', inputRef.current?.value);
-                    send(inputRef.current?.value);
+                if (event.key === 'Enter' && inputRef.current?.value.trim()) {
+                    console.log('Message: ', inputRef.current?.value.trim());
+                    send(inputRef.current?.value.trim());
                 }
             })
         }
